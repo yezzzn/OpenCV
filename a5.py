@@ -16,7 +16,7 @@ pTime = 0  # 이전 시간
 cTime = 0  # 현재 시간
 
 # 타이머 설정 (초 단위)
-timer_duration = 100  # 100초 동안 타이머 실행
+timer_duration = 60  # 60초 동안 타이머 실행
 start_time = time.time()  # 게임 시작 시간 기록
 
 # 이미지 로드
@@ -99,7 +99,6 @@ score = 0
 fin = False
 
 myHam = []  # 클릭된 재료를 저장할 리스트
-timer_duration = 10  # 100초 동안 타이머 실행
 
 # 게임 시작 상태를 저장하는 변수
 game_started = False
@@ -166,7 +165,8 @@ while True:
         key = cv2.waitKey(1)
         # "q" 키를 누르면 게임 종료
         if key == ord("q") or key == ord("Q"):
-            cv2.destroyWindow()  # 모든 창 닫기
+            cv2.destroyAllWindows()  # 모든 창 닫기
+            break
 
     # 재료 이미지 리스트로 저장
     overlay_images = [
@@ -233,8 +233,8 @@ while True:
                 index_finger_tip.y * img.shape[0]
             )
             # 이미지 영역 안에 들어올 때만 재료 추가
-            for i, (overlay_name, overlay_img) in enumerate(overlay_images):
-                spacing = 0
+            for i, (overlay_name, overlay_img) in enumerate(overlay_imagess):
+                spacing = 20
                 overlay_x = i * (overlay_width + spacing)
                 if (
                     overlay_x <= ix <= overlay_x + overlay_width
